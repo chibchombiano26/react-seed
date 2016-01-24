@@ -1,9 +1,13 @@
 class Constant {
 
     constructor(){
-        this.rows = 3;
-        this.columns = 6;
-        
+        this.rows = 2;
+        this.columns = 2;
+    }
+    
+    upLevel(){
+        //this.rows = this.rows +2;
+        this.columns = this.columns +2;
     }
     
     setVars(row, column){

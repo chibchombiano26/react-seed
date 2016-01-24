@@ -1,4 +1,19 @@
 
+@font-face{ 
+font-family: 'Glyphyx';
+src: url('Glyphyx/Glyphyx.eot');
+src: url('Glyphyx/Glyphyx.eot?#iefix') format('embedded-opentype'),
+     url('Glyphyx/Glyphyx.woff') format('woff'),
+     url('Glyphyx/Glyphyx.ttf') format('truetype');         
+}
+
+/*
+p {
+    font-family: "Glyphyx";
+}
+*/
+
+
 .card_container {
   position: relative;
   margin: 1px auto;

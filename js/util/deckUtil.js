@@ -1,28 +1,43 @@
 import constantsService from './constant';
 import utilService from './util';
 import Global from './global'
-//import simpsons from 'simpsons';
-
-
+import Parse from "parse";
+import Actions from '../actions/Actions';
 
 class deckUtil{
     
-    // this function creates deck of cards that returns an object of cards 
-    // to the caller
-    
-    createDeck(type) {
-        var deferred = $q.defer();
-        simpsons.listImages().then(function(result){
-            deferred.resolve(this.makeDake(result, type));
-        })
+    constructor(){
         
-        return deferred.promise;
+        this.images = [];
+        
+        Parse.initialize("hfxqabnwIplOsugoe3N8xCyDJppdsU632TkxgsnH", "DEbOLceWp9X39CsoxWvydcEz8YR1YwNW8eB1dxY3");
+        let Simpsoms = Parse.Object.extend("simpsoms");
+        let simpson = new Simpsoms();
+        let query = new Parse.Query(simpson);
+        query.find().then((data, err)=>{
+       
+            this.images = data.map((item)=>{
+                var element = item.toJSON();
+                return {id: element.objectId, url: element.pictureUrl};
+            });
+            
+            Actions.dataLoaded();
+        })
     }
     
-    makeDake(data, type){
+    upLevel(){
+        constantsService.upLevel();
+        return this.makeDake(this.images);
+    }
+    
+    createDeck(){
+        return this.makeDake(this.images);
+    }
+    
+    makeDake(data){
         var rows = constantsService.getRows();
     	var cols = constantsService.getColumns();
-    	var key = this.createRandom(data, type);
+    	var key = this.createRandom(data);
     	var deck = {};
     	deck.rows = [];
     
@@ -34,8 +49,11 @@ class deckUtil{
     		// creat each card in the row
     		for (var j = 0; j < cols; j++) {
     			var card = {};
+    			var element = key.pop()
     			card.isFaceUp = false;
-    			card.item = key.pop();
+    			card.item = element.id;
+    			card.id = utilService.makeid();
+    			card.url = element.url;
     			row.cards.push(card);
     		}
     		deck.rows.push(row);
@@ -43,58 +61,13 @@ class deckUtil{
     	return deck;
     }
     
-    
-    // creates a random array of items that contain matches
-    // for example: [1, 5, 6, 5, 1, 6]
-    createRandom(data, type) {
+    createRandom(data) {
     	var matches = constantsService.getNumMatches();
     	var pool = [];
     	var answers = [];
-    	var letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'
-    					, 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R'
-    					, 'S', 'T', 'U', 'W', 'X', 'Y', 'Z'];
     	
-    	var hiragana = ['あ', 'い', 'う', 'え', 'お', 'か', 'が', 'き'
-    					, 'ぎ', 'く', 'ぐ', 'け', 'げ', 'こ', 'ご', 'さ'
-    					, 'ざ', 'し', 'じ', 'す', 'ず', 'せ', 'ぜ', 'そ'
-    					, 'ぞ', 'た', 'だ', 'ち', 'ぢ', 'つ', 'づ', 'て'
-    					, 'で', 'と', 'ど', 'な', 'に', 'ぬ', 'ね', 'の'
-    					, 'は', 'ば', 'ぱ', 'ひ', 'び', 'ぴ', 'ふ', 'ぶ'
-    					, 'ぷ', 'へ', 'べ', 'ぺ', 'ほ', 'ぼ', 'ぽ', 'ま'
-    					, 'み', 'む', 'め', 'も', 'や', 'ゆ', 'よ', 'ら'
-    					, 'り', 'る', 'れ', 'ろ', 'わ', 'を', 'ん'];
-    					
-
-            					
-    	var fromParse = data;
-        
-    	// set what kind of item to display
-    	/*if(!type){
-    	    var items = fromParse;    
-    	}
-    	else{
-    	    switch (type) {
-    	        case 'Simpson':
-    	            var items = fromParse;    
-    	            break;
-    	            
-    	        case 'hiragana':
-    	            var items = hiragana;    
-    	            break;
-    	            
-	            case 'Letters':
-    	            var items = letters;    
-    	            break;
-    	        
-    	        
-    	        default:
-    	            var items = hiragana;    
-    	    }
-    	    
-    	}*/
-    	
-    	
-    	var items = hiragana;    
+    
+    	var items = data;    
     
     	// create the arrays for random numbers and item holder
     	for (var i = 0; i < matches * 2; i++) {
