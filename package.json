@@ -3,18 +3,35 @@
   "version": "1.0.0",
   "description": "A collection of educational resources about React, GraphQL, and Relay",
   "scripts": {
-    "start": "./node_modules/.bin/babel-node --presets react,es2015 server.js"
+    "start": "./node_modules/.bin/babel-node --presets react,es2015 server.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rgrjs/rgrjs.com.git"
+    "url": ""
+  },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+    "testFileExtensions": [
+      "es6",
+      "js"
+    ],
+    "moduleFileExtensions": [
+      "es6",
+      "js"
+    ],
+    "collectCoverage": true,
+    "unmockedModulePathPatterns": [
+      "react",
+      "jquery"
+    ]
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rgrjs/rgrjs.com/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/rgrjs/rgrjs.com#readme",
+  "homepage": "",
   "dependencies": {
     "babel": "^6.3.13",
     "babel-cli": "^6.3.15",
@@ -29,10 +46,13 @@
     "parse": "^1.6.14",
     "parse-react": "^0.5.0",
     "react": "^0.14.3",
+    "react-addons-test-utils": "^0.14.7",
     "react-dom": "^0.14.3",
     "webpack": "^1.12.9"
   },
   "devDependencies": {
-    "babel-preset-stage-0": "^6.3.13"
+    "babel-jest": "^9.0.3",
+    "babel-preset-stage-0": "^6.3.13",
+    "jest-cli": "^0.9.2"
   }
 }
