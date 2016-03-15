@@ -10,16 +10,19 @@ const defaultState = {
 function twitStore(state = defaultState, action){
     
     switch (action.type) {
-        case 'ADD_TWIT':
-            return Object.assign({}, state, {
-                twits: state.twits.concat([{
-                    twit: action.twit,
-                }]),
+        case 'ADD':
+            state.twits.unshift(action.value);
+            return state;
+        case 'DELETE':
+            state.twits = state.twits.filter(function(el){
+              return el.text !== action.id;
             });
-        case 'LOAD':
-          state.twits.push(action.twit);
-          return state;
+            return state;
         
+        case 'DATA_LOADED':
+            state.twits = action.twits;
+            return state;
+        /*
         case 'ASYNC':
             return dispatch => {
                 service.getTwits(action.user.name).then((data)=>{
@@ -27,6 +30,8 @@ function twitStore(state = defaultState, action){
                     return dispatch;
                 })
              };
+         */
+        
         
         default:
             return state;

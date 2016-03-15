@@ -1,5 +1,6 @@
 import React from "react";
 import Twit from "./twit";
+import Add from "./add";
 import Actions from "../actions/actions";
 import Store from "../stores/store";
 import StoreRedux from "../stores/storeRedux";
@@ -20,41 +21,30 @@ export default class Twits extends React.Component {
         
         
         StoreRedux.subscribe(()=>{
+            console.log(StoreRedux.getState());
             this.setState(StoreRedux.getState());
         })
     }
     
-  
-    
-    handleClick(){
-        StoreRedux.dispatch({
-            type: "ASYNC",
-            user
-        })
-    }
     
     componentDidMount(){
-        StoreRedux.dispatch({
-            type: "ASYNC",
-            user
-        })
+        service.getTwits('pypestream');
     }
     
     render(){
         
-        
-        var twits = this.state.twits.map(function(item, index){
+        var twits = this.state.twits.map(function(item, i){
             return(
-                <Twit key={index} title={item.text} link={item.source} image={item.user.profile_image_url_https}></Twit>
+                <div>
+                    <Twit key={i} title={item.text} link={item.source} image={item.user.profile_image_url_https}></Twit>
+                </div>
             )
         })
         
         
         return(
             <div>
-                 <p onClick={this.handleClick}>
-                    Click to load
-                  </p>
+                <Add/>
                 {twits}
             </div>
         );

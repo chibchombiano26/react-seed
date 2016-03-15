@@ -1,5 +1,5 @@
 TN:
-SF:/home/ubuntu/workspace/pypestream/app/services/twits.js
+SF:/home/ubuntu/workspace/app/app/services/twits.js
 FN:4,_interopRequireDefault
 FN:4,getTwits
 FN:5,(anonymous_3)
@@ -27,7 +27,7 @@ BRF:4
 BRH:3
 end_of_record
 TN:
-SF:/home/ubuntu/workspace/pypestream/app/actions/actions.js
+SF:/home/ubuntu/workspace/app/app/actions/actions.js
 FN:2,_interopRequireDefault
 FN:6,dataLoaded
 FNF:2
@@ -49,7 +49,7 @@ BRF:4
 BRH:3
 end_of_record
 TN:
-SF:/home/ubuntu/workspace/pypestream/app/AppDispatcher.js
+SF:/home/ubuntu/workspace/app/app/AppDispatcher.js
 FN:1,_interopRequireDefault
 FNF:1
 FNH:1
@@ -66,7 +66,7 @@ BRF:4
 BRH:3
 end_of_record
 TN:
-SF:/home/ubuntu/workspace/pypestream/app/Constants.js
+SF:/home/ubuntu/workspace/app/app/Constants.js
 FNF:0
 FNH:0
 DA:1,2
@@ -76,7 +76,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/ubuntu/workspace/pypestream/app/services/__mocks__/request.js
+SF:/home/ubuntu/workspace/app/app/services/__mocks__/request.js
 FN:9,request
 FN:11,(anonymous_2)
 FN:13,(anonymous_3)
@@ -98,7 +98,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/ubuntu/workspace/pypestream/app/components/twit.js
+SF:/home/ubuntu/workspace/app/app/components/twit.js
 FN:1,(anonymous_1)
 FN:1,defineProperties
 FN:1,(anonymous_3)
@@ -166,7 +166,7 @@ BRF:31
 BRH:19
 end_of_record
 TN:
-SF:/home/ubuntu/workspace/pypestream/app/stores/store.js
+SF:/home/ubuntu/workspace/app/app/stores/store.js
 FN:1,(anonymous_1)
 FN:1,defineProperties
 FN:1,(anonymous_3)
