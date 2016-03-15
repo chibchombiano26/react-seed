@@ -6,15 +6,6 @@ const defaultState = {
     twits :[]
 }
 
-const INCREMENT_COUNTER = 'INCREMENT_COUNTER';
-
-function increment() {
-  return {
-    type: INCREMENT_COUNTER
-  };
-}
-
-
 
 function twitStore(state = defaultState, action){
     
