@@ -48,11 +48,14 @@
     "react": "^0.14.3",
     "react-addons-test-utils": "^0.14.7",
     "react-dom": "^0.14.3",
+    "react-router": "^2.0.1",
+    "redux": "^3.3.1",
     "webpack": "^1.12.9"
   },
   "devDependencies": {
     "babel-jest": "^9.0.3",
     "babel-preset-stage-0": "^6.3.13",
-    "jest-cli": "^0.9.2"
+    "jest-cli": "^0.9.2",
+    "redux-thunk": "^2.0.1"
   }
 }

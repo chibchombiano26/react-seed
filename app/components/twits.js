@@ -2,34 +2,42 @@ import React from "react";
 import Twit from "./twit";
 import Actions from "../actions/actions";
 import Store from "../stores/store";
+import StoreRedux from "../stores/storeRedux";
 import * as service from "../services/twits";
 
 
+const user = {
+    name: "pypestream"
+}
 
 export default class Twits extends React.Component {
     
     constructor(props){
         super(props);
         
-        this.state = ({
-           twits : [] 
-        });
         
-        this.twitService = service;
-        this.twitService.getTwits("pypestream");
-        this.dataLoaded = this.dataLoaded.bind(this);
+        this.state = StoreRedux.getState();
+        
+        
+        StoreRedux.subscribe(()=>{
+            this.setState(StoreRedux.getState());
+        })
     }
     
+  
     
-    dataLoaded = () =>{
-        
-        this.setState({
-            twits : this.twitService.twits
+    handleClick(){
+        StoreRedux.dispatch({
+            type: "ASYNC",
+            user
         })
     }
     
     componentDidMount(){
-        Store.on("data_loaded", this.dataLoaded);
+        StoreRedux.dispatch({
+            type: "ASYNC",
+            user
+        })
     }
     
     render(){
@@ -37,13 +45,16 @@ export default class Twits extends React.Component {
         
         var twits = this.state.twits.map(function(item, index){
             return(
-                <Twit title={item.text} link={item.source} image={item.user.profile_image_url_https}></Twit>
+                <Twit key={index} title={item.text} link={item.source} image={item.user.profile_image_url_https}></Twit>
             )
         })
         
         
         return(
             <div>
+                 <p onClick={this.handleClick}>
+                    Click to load
+                  </p>
                 {twits}
             </div>
         );

@@ -14,7 +14,7 @@ export default class Twit extends React.Component {
         return(
             <div className="card">
                 <div className="col s4 m2">
-                  <img src={this.props.image} alt="" class="circle responsive-img valign"/>
+                  <img src={this.props.image} alt="" className="circle responsive-img valign"/>
                 </div>
                 <div className="card-content"><p>{this.props.title}</p></div>
                 <div className="card-action">
